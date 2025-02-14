@@ -88,7 +88,7 @@ def main(  # noqa: PLR0913, PLR0915
     )
     full_definition_file = generated_dir / full_definition_file_name
     core_variables_file = (
-        generated_dir / f"ScenarioMIP_coreVariables_only-core_{version_filename}.xlsx"
+        generated_dir / f"ScenarioMIP_coreVariables_only-core_{version_filename}.csv"
     )
     readme_file = generated_dir / f"README_{version_filename}.md"
     files_to_upload = [full_definition_file, core_variables_file, readme_file]
@@ -165,8 +165,8 @@ def main(  # noqa: PLR0913, PLR0915
     full_definition_file.parent.mkdir(exist_ok=True, parents=True)
     shutil.copy2(file_to_process, full_definition_file)
 
-    # Write the core variables
-    core_variables.to_excel(core_variables_file)
+    # Write the core variables (as CSV, so you get sensible previews)
+    core_variables.to_csv(core_variables_file)
 
     # Do the upload to Zenodo
     zenodo_interactor = ZenodoInteractor(token=os.environ["ZENODO_TOKEN"])
