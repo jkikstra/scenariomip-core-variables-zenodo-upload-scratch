@@ -1,3 +1,9 @@
+# Raw downloads
+ScenarioMIP_coreVariables.xlsx
+
+# Generated data
+generated
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

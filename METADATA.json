@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "version": "0.1.0b1",
+    "title": "ScenarioMIP core variables",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Humpen\u00f6der, Florian",
+        "affiliation": "Potsdam Institute for Climate Impact Research",
+        "orcid": "0000-0003-2927-9407"
+      },
+      {
+        "name": "Kikstra, Jarmo",
+        "affiliation": "International Institute for Applied Systems Analysis",
+        "orcid": "0000-0001-9405-1228"
+      }
+    ],
+    "license": "cc-by-4.0",
+    "upload_type": "dataset"
+  }
+}

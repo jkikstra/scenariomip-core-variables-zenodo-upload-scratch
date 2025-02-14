@@ -1,6 +1,9 @@
-# My Python repo
-<!--- Adding a one-line description of what this repository is for here may be
-helpful -->
+# ScenarioMIP core variables zenodo upload
+
+A simple repo to get the ScenarioMIP core variable definitions onto zenodo.
+This repo is unlikely to be needed for long
+and is really just a chance to test out
+[openscm-zenodo](https://github.com/openscm/openscm-zenodo).
 <!---
 
 We recommend having a status line in your repo to tell anyone who stumbles
@@ -19,7 +22,7 @@ on your repository where you're up to. Some suggested options:
 
 ## Status
 
-- prototype: the project is just starting up and the code is all prototype
+- development: the project is actively being worked on
 
 ## Installation
 
@@ -38,53 +41,57 @@ uv run pre-commit install
 These steps are also captured in the `Makefile` so if you want a single
 command, you can instead simply run `make virtual-enviroment`.
 
-Having installed your virtual environment, you can now run commands in your
-virtual environment using
+## Uploading a new version to Zenodo
+
+Having installed your virtual environment, you can now make uploads.
+
+Firstly, make sure you have copied `.env.sample` to `.env`.
+You will also need to create a Zenodo token (if you don't have one already)
+and put it into your `.env` file
+(do not put it in `.env.sample`, this will leak your credentials to the world!).
+For full details, see the instructions in `.env.sample`.
+
+Update the version in `METADATA.json` to whatever version you would like to use next.
+
+Upload the data to Zenodo.
 
 ```sh
-uv run <command>
+uv run python upload.py <file-to-process>
+# For example
+uv run python upload.py ScenarioMIP_coreVariables.xlsx
 ```
 
-For example, to run Python within the virtual environment, run
+By default, this will just set up the deposition.
+You can then go to Zenodo and press publish.
+If you want to just publish directly, then add the `--publish` flag, i.e.
 
 ```sh
-uv run python
+uv run python upload.py <file-to-process> --publish
 ```
-
-<!--- Other documentation and instructions can then be added here as you go,
-perhaps replacing the other instructions above as they may become redundant.
--->
 
 ## Development
-
-<!--- In bigger projects, we would recommend having separate docs where this
-development information can go. However, for such a simple repository, having
-it all in the README is fine. -->
 
 Install and run instructions are the same as the above (this is a simple
 repository, without tests etc. so there are no development-only dependencies).
 
 ### Contributing
 
-This is a very thin repository. There aren't any strict guidelines for
-contributing, partly because we don't know what we're trying to achieve (we're
-just exploring). If you would like to contribute, it is best to raise an issue
+This is a very thin repository. 
+There aren't any strict guidelines for contributing.
+If you would like to contribute and don't know how, it is best to raise an issue
 to discuss what you want to do (without a discussion, we can't guarantee that
 any contribution can actually be used).
-<!--- You may want to update this section as the project evolves. -->
 
 ### Repository structure
 
-The repository is very basic. It imposes no structure on you so you can layout
-your Python files, notebooks etc. in any way you wish. We do have a basic
-`Makefile` which captures key commands in one place (for more thoughts on why
-this makes sense, see
-[general principles: automation](https://gitlab.com/znicholls/mullet-rse/-/blob/main/book/general-principles/automation.md)).
-For an introduction to `make`, see
-[this introduction from Software Carpentry](https://swcarpentry.github.io/make-novice/).
-Having said this, if you're not interested in `make`, you can just copy the
-commands out of the `Makefile` by hand and you will be 90% as happy for a
-simple repository like this.
+The repository is very basic. 
+There is a single driver script, `upload.py`.
+The metadata to associate with a deposit is by default loaded from `METADATA.json`.
+Help for the upload script can be shown by running:
+
+```sh
+uv run python upload.py --help
+```
 
 ### Tools
 
