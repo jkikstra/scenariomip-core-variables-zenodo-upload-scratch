@@ -26,6 +26,8 @@ on your repository where you're up to. Some suggested options:
 
 ## Installation
 
+### Setting up the virtual environment
+
 We do all our environment management using [uv](https://docs.astral.sh/uv/).
 To get started, you will need to make sure that uv is installed
 ([instructions here](https://docs.astral.sh/uv/getting-started/installation/),
@@ -41,19 +43,27 @@ uv run pre-commit install
 These steps are also captured in the `Makefile` so if you want a single
 command, you can instead simply run `make virtual-enviroment`.
 
-## Uploading a new version to Zenodo
+### Joining the Zenodo record
 
-Having installed your virtual environment, you can now make uploads.
+We are working on this zenodo record.
+To enable access to edit this record,
+you will need to ask someone who already has access to give you access.
+Once they have given you access,
+you will be able to create a Zenodo token and use this repository to edit the records.
+
+### Setting up your Zenodo token
 
 Firstly, make sure you have copied `.env.sample` to `.env`.
 You will also need to create a Zenodo token (if you don't have one already)
 and put it into your `.env` file
 (do not put it in `.env.sample`, this will leak your credentials to the world!).
-For full details, see the instructions in `.env.sample`.
+For full details on creating zenodo tokens, see the instructions in `.env.sample`.
 
-Update the version in `METADATA.json` to whatever version you would like to use next.
+## Uploading a new version to Zenodo
 
-Upload the data to Zenodo.
+Having done the installation/setup steps, you can now make uploads.
+Step 1 is to update the version in `METADATA.json` to whatever version you would like to use next.
+Then you can upload the data to Zenodo.
 
 ```sh
 uv run python upload.py <file-to-process>
@@ -76,7 +86,7 @@ repository, without tests etc. so there are no development-only dependencies).
 
 ### Contributing
 
-This is a very thin repository. 
+This is a very thin repository.
 There aren't any strict guidelines for contributing.
 If you would like to contribute and don't know how, it is best to raise an issue
 to discuss what you want to do (without a discussion, we can't guarantee that
@@ -84,7 +94,7 @@ any contribution can actually be used).
 
 ### Repository structure
 
-The repository is very basic. 
+The repository is very basic.
 There is a single driver script, `upload.py`.
 The metadata to associate with a deposit is by default loaded from `METADATA.json`.
 Help for the upload script can be shown by running:
