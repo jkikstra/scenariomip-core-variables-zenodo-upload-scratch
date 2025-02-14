@@ -22,44 +22,7 @@ from openscm_zenodo.zenodo import ZenodoInteractor
 pd.set_option("display.max_rows", 100)
 
 
-def get_draft_deposition_id(
-    zenodo_interactor: ZenodoInteractor, latest_deposition_id: int
-) -> int:
-    """
-    Get a draft deposition ID
-    """
-    # TODO: hide token in ZenodoInteractor preview
-    # TOOO: push this into openscm-zenodo
-    from openscm_zenodo.zenodo import RestAction
-
-    try:
-        draft_deposition_id = zenodo_interactor.create_new_version_from_latest(
-            latest_deposition_id=latest_deposition_id
-        ).json()["id"]
-
-    except AssertionError:
-        # get_concept_id_record
-        concept_id_record = zenodo_interactor.get_record(
-            record_id=latest_deposition_id
-        ).json()["conceptrecid"]
-
-        drafts = zenodo_interactor.get_response(
-            post_domain_part="/api/deposit/depositions",
-            rest_action=RestAction.get,
-            params={"status": "draft"},
-        ).json()
-        for draft in drafts:
-            if draft["conceptrecid"] == concept_id_record:
-                draft_deposition_id = draft["record_id"]
-                break
-        else:
-            msg = "Should have found an existing draft"
-            raise AssertionError(msg)
-
-    return draft_deposition_id
-
-
-def main(  # noqa: PLR0913
+def main(  # noqa: PLR0913, PLR0915
     file_to_process: Annotated[
         Path, typer.Argument(help="Core variables definition file from which to start")
     ],
@@ -211,8 +174,8 @@ def main(  # noqa: PLR0913
     latest_deposition_id = zenodo_interactor.get_latest_deposition_id(
         any_deposition_id=any_deposition_id,
     )
-    draft_deposition_id = get_draft_deposition_id(
-        zenodo_interactor, latest_deposition_id
+    draft_deposition_id = zenodo_interactor.get_draft_deposition_id(
+        latest_deposition_id=latest_deposition_id
     )
 
     zenodo_interactor.update_metadata(

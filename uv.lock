@@ -353,7 +353,7 @@ wheels = [
 
 [[package]]
 name = "openscm-zenodo"
-version = "0.3.1"
+version = "0.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "attrs" },
@@ -362,9 +362,9 @@ dependencies = [
     { name = "tqdm" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/31/79/960dd8f968547741be75337266d3a4a6e399a18831f85dd1b811d152f088/openscm_zenodo-0.3.1.tar.gz", hash = "sha256:7146fe82c2b22c0804747bc3a254ba7573b18a2778139c66dac745cea70a7643", size = 21269 }
+sdist = { url = "https://files.pythonhosted.org/packages/11/b6/793d39ffa794b3b7fce16170ac69289a8620d7a2991060f6b8bec410b25f/openscm_zenodo-0.4.0.tar.gz", hash = "sha256:a0eead76c9c57709d642a399eddae2fafb848f31395502f6021b1dbdf17fcf93", size = 21736 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1c/ce/7041247d11a2af75560addec25c315a3fd3e82628a05948675aad8874896/openscm_zenodo-0.3.1-py3-none-any.whl", hash = "sha256:033c2b9e0b0e3316f1caadbb3efab6344e80cca458a31eb40c6e22fd3a937eb4", size = 17916 },
+    { url = "https://files.pythonhosted.org/packages/64/7a/5a18adc6ef56d215f436cd6fcf7289beb0e2bf16e00b9041409808393e5b/openscm_zenodo-0.4.0-py3-none-any.whl", hash = "sha256:2ed2227eb545d2841712ca2cbcd18fe23d94b91d9e9ad39718b1dab296c10028", size = 18428 },
 ]
 
 [[package]]
@@ -465,7 +465,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "openpyxl", specifier = ">=3.1.5" },
-    { name = "openscm-zenodo", specifier = ">=0.3.1" },
+    { name = "openscm-zenodo", specifier = ">=0.4.0" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pre-commit", specifier = ">=3.3.1" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
