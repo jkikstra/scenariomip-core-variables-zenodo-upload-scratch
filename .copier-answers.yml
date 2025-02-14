@@ -1,0 +1,10 @@
+# Changes here will be overwritten by Copier
+_commit: v0.4.1
+_src_path: gl:openscm/copier-basic-python-repository
+email: zebedee.nicholls@climate-resource.com
+name: Zebedee Nicholls
+notebooks: false
+package_manager: uv
+project_description_short: Uploads of the ScenarioMIP core variables to zenodo. Unlikely
+    to be needed for long.
+project_url: https://github.com/znichollscr/scenariomip-core-variables-zenodo-upload-scratch
