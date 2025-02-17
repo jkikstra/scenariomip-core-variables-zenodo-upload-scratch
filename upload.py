@@ -8,7 +8,6 @@ import json
 import os
 import shutil
 import sys
-from functools import reduce
 from pathlib import Path
 from typing import Annotated
 
@@ -98,11 +97,15 @@ def main(  # noqa: PLR0913, PLR0915
     full_definition = pd.read_excel(
         file_to_process,
         sheet_name=sheet_to_read,
-        converters={c: bool for c in core_indicator_cols},
+        dtype={c: str for c in core_indicator_cols},
     )
-    core_variables = full_definition[
-        reduce(np.logical_or, [full_definition[c] for c in core_indicator_cols])
-    ]
+    is_core = np.full(full_definition.shape[0], False)
+    for c in core_indicator_cols:
+        is_core = is_core | ~full_definition[c].isnull()
+
+    core_variables = full_definition[is_core]
+    # Sort values before continuing
+    core_variables = core_variables.sort_values(by="variable")
 
     if verbose:
         print(f"There are {full_definition.shape[0]} variables in total.")
@@ -166,7 +169,7 @@ def main(  # noqa: PLR0913, PLR0915
     shutil.copy2(file_to_process, full_definition_file)
 
     # Write the core variables (as CSV, so you get sensible previews)
-    core_variables.to_csv(core_variables_file)
+    core_variables.to_csv(core_variables_file, index=False)
 
     # Do the upload to Zenodo
     zenodo_interactor = ZenodoInteractor(token=os.environ["ZENODO_TOKEN"])
