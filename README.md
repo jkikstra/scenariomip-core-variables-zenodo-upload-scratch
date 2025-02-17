@@ -36,7 +36,7 @@ we found that using uv's standalone installer was best on a Mac).
 To create the virtual environment, run
 
 ```sh
-uv install
+uv sync
 uv run pre-commit install
 ```
 
